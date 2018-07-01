@@ -1,0 +1,25 @@
+{
+  "name": "await-for",
+  "version": "1.0.0",
+  "description": "A helper package for ES6 async/await",
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.js",
+  "scripts": {
+    "build": "rollup ./src/index.js --file ./dist/bundle.js --format umd --name 'await-for'"
+  },
+  "keywords": [
+    "node",
+    "async",
+    "await",
+    "es6",
+    "try/catch"
+  ],
+  "author": "Harshit Thukral <h.thakral369@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^0.62.0"
+  }
+}

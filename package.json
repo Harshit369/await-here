@@ -1,5 +1,5 @@
 {
-  "name": "await-for",
+  "name": "await-here",
   "version": "1.0.0",
   "description": "A helper package for ES6 async/await",
   "main": "dist/bundle.js",

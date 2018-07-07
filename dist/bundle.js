@@ -7,14 +7,14 @@
   /**
    * Resolves/rejects the promise in one single line
    * @param { promise } promise
-   * @returns { promise } promise that results with [ error, data ]
+   * @returns { promise } promise that resolves with [ error, data ]
    */
-  const awaitFor = promise => {
-    return promise.then(data => [null, data]).catch(err => [err, null]);
+  const awaitHere = promise => {
+    return promise.then(data => [null, data]).catch(err => [err]);
   };
 
-  exports.awaitFor = awaitFor;
-  exports.default = awaitFor;
+  exports.awaitHere = awaitHere;
+  exports.default = awaitHere;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

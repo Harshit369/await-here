@@ -3,8 +3,8 @@
  * @param { promise } promise
  * @returns { promise } promise that resolves with [ error, data ]
  */
-export const awaitFor = promise => {
-  return promise.then(data => [null, data]).catch(err => [err, null]);
+export const awaitHere = promise => {
+  return promise.then(data => [null, data]).catch(err => [err]);
 };
 
-export default awaitFor;
+export default awaitHere;

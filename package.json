@@ -5,7 +5,7 @@
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
   "scripts": {
-    "build": "rollup ./src/index.js --file ./dist/bundle.js --format umd --name 'await-for'"
+    "build": "./node_modules/.bin/rollup ./src/index.js --file ./dist/bundle.js --format umd --name 'await-for'"
   },
   "keywords": [
     "node",

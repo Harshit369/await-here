@@ -9,12 +9,12 @@
    * @param { promise } promise
    * @returns { promise } promise that resolves with [ error, data ]
    */
-  const awaitHere = promise => {
+  const here = promise => {
     return promise.then(data => [null, data]).catch(err => [err]);
   };
 
-  exports.awaitHere = awaitHere;
-  exports.default = awaitHere;
+  exports.here = here;
+  exports.default = here;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

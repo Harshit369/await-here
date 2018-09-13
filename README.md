@@ -1,12 +1,12 @@
 ## await-here
 
-A helper wrapper for quick error handling with async/await.
+A helper wrapper for quick error handling with async/await. [TL;DR](#with-await-here)
 
 #### Installation
 
 ```
 using yarn: Yarn add await-here
-using npm: npm install await-here
+using npm: npm install await-here --save
 ```
 
 #### Normal ways to handle error without `await-here`

@@ -16,6 +16,10 @@
     "try/catch"
   ],
   "author": "Harshit Thukral <h.thakral369@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harshit369/await-here.git"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"

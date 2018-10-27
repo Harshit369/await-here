@@ -2,8 +2,9 @@
   "name": "await-here",
   "version": "1.0.3",
   "description": "A helper package for ES6 async/await",
-  "main": "dist/bundle.js",
-  "module": "dist/bundle.js",
+  "main": "dist/await-here.cjs.js",
+  "module": "dist/await-here.esm.js",
+  "unpkg": "dist/await-here.umd.js",
   "scripts": {
     "build": "./node_modules/.bin/rollup --config",
     "test": "mocha --require babel-core/register"

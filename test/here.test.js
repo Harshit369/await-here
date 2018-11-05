@@ -1,5 +1,5 @@
 const { expect, assert } = require('chai');
-const { here } = require('../src/index');
+const { here, default: hereAsDefault } = require('../src/index');
 
 describe('#here', () => {
   it('should return a promise', () => {
@@ -31,5 +31,9 @@ describe('#here', () => {
     const [err, data] = await here(noobPromise);
     expect(err).to.equal(error);
     expect(data).to.be.undefined;
+  });
+
+  it('default and named export should be same', () => {
+    expect(here).to.equal(hereAsDefault);
   });
 });

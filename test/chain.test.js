@@ -1,9 +1,9 @@
 const { expect, assert } = require('chai');
-const { here, default: hereAsDefault } = require('../src/index');
+const { chain } = require('../src/index');
 
-describe('#here', () => {
+describe('#chain', () => {
   it('should return a promise', () => {
-    const defaultPromise = here(Promise.resolve('foo'));
+    const defaultPromise = chain(Promise.resolve('foo'));
     expect(defaultPromise).to.be.an.instanceOf(Promise);
   })
 
@@ -11,29 +11,26 @@ describe('#here', () => {
     const promiseToResolve = Promise.resolve('foo');
     const promiseToReject = Promise.reject('foo');
 
-    const resolvedValues = await here(promiseToResolve);
+    const resolvedValues = await chain(promiseToResolve);
     assert(Array.isArray(resolvedValues));
 
-    const rejectedValues = await here(promiseToReject)
+    const rejectedValues = await chain(promiseToReject)
     assert(Array.isArray(rejectedValues));
   });
 
-  it('should return a value when resolved', async () => {
+  it('should transform properly', async () => {
     const testValue = 'foo';
+    const finalValue = 'oo';
     const noobPromise = Promise.resolve(testValue);
-    const [, data] = await here(noobPromise);
-    expect(data).to.equal(testValue);
+    const [, data] = await chain(noobPromise, (string) => string.slice(1, 3));
+    expect(data).to.equal(finalValue);
   });
 
-  it('should return an error when rejected', async () => {
+  it('should be catched properly', async () => {
     const error = 'foo';
     const noobPromise = Promise.reject(error);
-    const [err, data] = await here(noobPromise);
+    const [err, data] = await chain(noobPromise);
     expect(err).to.equal(error);
     expect(data).to.be.undefined;
-  });
-
-  it('default and named export should be same', () => {
-    expect(here).to.equal(hereAsDefault);
   });
 });

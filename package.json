@@ -2,11 +2,12 @@
   "name": "await-here",
   "version": "1.0.3",
   "description": "A helper package for ES6 async/await",
-  "main": "dist/bundle.js",
-  "module": "dist/bundle.js",
+  "main": "dist/await-here.cjs.js",
+  "module": "dist/await-here.esm.js",
+  "unpkg": "dist/await-here.umd.js",
   "scripts": {
-    "build": "./node_modules/.bin/rollup ./src/index.js --file ./dist/bundle.js --format umd --name 'await-for'",
-    "test": "mocha --require babel-core/register"
+    "build": "BABEL_ENV=dev ./node_modules/.bin/rollup --config",
+    "test": "BABEL_ENV=test mocha --require @babel/register"
   },
   "keywords": [
     "node",
@@ -25,16 +26,14 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-    "rollup": "^0.62.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "rollup": "^0.62.0",
+    "rollup-plugin-babel": "^4.0.3"
   }
 }

@@ -91,4 +91,4 @@ async function asyncOperation(cb) {
 }
 ```
 
-**_Typescript support comming soon_**
+**Supports Typescript 🤟**

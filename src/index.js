@@ -16,9 +16,7 @@ export const job = (jobToPromisify, isCatch, ...additionalJobArgs) =>
   here(
     new Promise((resolve, reject) => {
       const result = jobToPromisify(...additionalJobArgs);
-      isCatch && isCatch(result)
-        ? reject(result)
-        : resolve(result);
+      isCatch && isCatch(result) ? reject(result) : resolve(result);
     })
   );
 

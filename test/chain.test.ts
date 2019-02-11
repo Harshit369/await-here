@@ -1,11 +1,11 @@
-const { expect, assert } = require('chai');
-const { chain } = require('../src/index');
+import { expect, assert } from 'chai';
+import { chain } from '../src/index';
 
 describe('#chain', () => {
   it('should return a promise', () => {
-    const defaultPromise = chain(Promise.resolve('foo'));
+    const defaultPromise = chain<string, number>(Promise.resolve('foo'));
     expect(defaultPromise).to.be.an.instanceOf(Promise);
-  })
+  });
 
   it('should return an array when await-ed', async () => {
     const promiseToResolve = Promise.resolve('foo');
@@ -14,15 +14,22 @@ describe('#chain', () => {
     const resolvedValues = await chain(promiseToResolve);
     assert(Array.isArray(resolvedValues));
 
-    const rejectedValues = await chain(promiseToReject)
+    const rejectedValues = await chain(promiseToReject);
     assert(Array.isArray(rejectedValues));
   });
 
   it('should transform properly', async () => {
     const testValue = 'foo';
+    // const step2Value = ['f', 'o', 'o'];
+    // const step3Value = ['o', 'o'];
     const finalValue = 'oo';
     const noobPromise = Promise.resolve(testValue);
-    const [, data] = await chain(noobPromise, (string) => string.slice(1, 3));
+    const [, data] = await chain<string, string>(
+      noobPromise,
+      string => string.split(''),
+      array => array.slice(1),
+      slicedArray => slicedArray.join('')
+    );
     expect(data).to.equal(finalValue);
   });
 

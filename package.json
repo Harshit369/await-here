@@ -7,7 +7,7 @@
   "unpkg": "dist/await-here.umd.js",
   "scripts": {
     "build": "BABEL_ENV=dev ./node_modules/.bin/rollup --config",
-    "test": "BABEL_ENV=test mocha --require @babel/register"
+    "test": "BABEL_ENV=test && TS_NODE_PROJECT=tsconfig.testing.json mocha -r ts-node/register test/**/*.test.ts"
   },
   "keywords": [
     "node",
@@ -31,11 +31,14 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.1.2",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-typescript2": "^0.19.2",
+    "ts-node": "^8.0.2",
     "typescript": "^3.2.4"
   }
 }

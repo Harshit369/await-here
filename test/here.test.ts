@@ -1,11 +1,11 @@
-const { expect, assert } = require('chai');
-const { here, default: hereAsDefault } = require('../src/index');
+import { expect, assert } from 'chai';
+import { here, default as hereAsDefault } from '../src/index';
 
 describe('#here', () => {
   it('should return a promise', () => {
     const defaultPromise = here(Promise.resolve('foo'));
     expect(defaultPromise).to.be.an.instanceOf(Promise);
-  })
+  });
 
   it('should return an array when await-ed', async () => {
     const promiseToResolve = Promise.resolve('foo');
@@ -14,7 +14,7 @@ describe('#here', () => {
     const resolvedValues = await here(promiseToResolve);
     assert(Array.isArray(resolvedValues));
 
-    const rejectedValues = await here(promiseToReject)
+    const rejectedValues = await here<undefined, string>(promiseToReject);
     assert(Array.isArray(rejectedValues));
   });
 

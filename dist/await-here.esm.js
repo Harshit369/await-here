@@ -3,6 +3,12 @@ function here(promise) {
         .then((data) => [null, data])
         .catch((err) => [err, undefined]);
 }
+function chain(promise, ...transformations) {
+    const promiseChain = transformations.reduce((chain, transformer) => {
+        return chain.then(data => Promise.resolve(transformer(data)));
+    }, promise);
+    return here(promiseChain);
+}
 
 export default here;
-export { here };
+export { here, chain };

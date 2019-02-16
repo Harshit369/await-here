@@ -1,6 +1,6 @@
 {
   "name": "await-here",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A helper package for ES6 async/await",
   "main": "dist/await-here.cjs.js",
   "module": "dist/await-here.esm.js",

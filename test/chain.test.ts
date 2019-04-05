@@ -20,8 +20,6 @@ describe('#chain', () => {
 
   it('should transform properly', async () => {
     const testValue = 'foo';
-    // const step2Value = ['f', 'o', 'o'];
-    // const step3Value = ['o', 'o'];
     const finalValue = 'oo';
     const noobPromise = Promise.resolve(testValue);
     const [, data] = await chain<string, string>(

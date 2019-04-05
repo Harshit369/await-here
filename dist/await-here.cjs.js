@@ -9,7 +9,7 @@ function here(promise) {
 }
 function chain(promise, ...transformations) {
     const promiseChain = transformations.reduce((chain, transformer) => {
-        return chain.then(data => Promise.resolve(transformer(data)));
+        return chain.then(data => transformer(data));
     }, promise);
     return here(promiseChain);
 }

@@ -23,7 +23,7 @@ export function chain<T, R = T, E = any>(
   const promiseChain = transformations.reduce(
     (chain: Promise<any>, transformer) => {
       return chain.then<ReturnType<typeof transformer>>(data =>
-        Promise.resolve(transformer(data))
+        transformer(data)
       );
     },
     promise

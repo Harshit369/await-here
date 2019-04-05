@@ -1,15 +1,15 @@
 ## await-here
 
-A helper wrapper for quick error handling with async/await. [TL;DR](#with-await-here)
+A helper wrapper for quick error handling with async/await. [TL;DR](#Now-using-await-here)
 
 #### Installation
 
 ```
-using yarn: Yarn add await-here
+using yarn: yarn add await-here
 using npm: npm install await-here --save
 ```
 
-#### Normal ways to handle error without `await-here`
+#### Normal ways to handle error earlier
 
 Its somewhat cumbersome for a developer to handle error using async/await. the way below code is written the function will fail silently if the `somethingThatRetunsPromise` fails.
 
@@ -36,7 +36,21 @@ async function asyncOperation(cb) {
 }
 ```
 
-but lets say you want to do some series of async queries.
+#### Now using await-here
+
+await-here inspired by golang allow you to handle data and error together without hustle:
+
+```js
+async function(cb) {
+  const [err, data] = await somethingThatRetunsPromise();
+  if(err) return alert('something wrong happened');
+  return cb(data);
+}
+```
+
+---
+
+But lets say you want to do some series of async queries like this:
 
 ```js
 async function asyncOperation(cb) {
@@ -60,21 +74,7 @@ async function asyncOperation(cb) {
 }
 ```
 
-#### With await-here
-
-await-here inspired by golang allow you to handle data and error together without hustle:
-
-normal usecase:
-
-```js
-async function(cb) {
-  const [err, data] = await somethingThatRetunsPromise();
-  if(!err) return alert('something wrong happened');
-  return cb(data);
-}
-```
-
-lets see how it simplyfies the above example of feting user and its tasks
+lets see how **await-here** simplyfies the above example of feting user and its tasks with all possible error cases and values
 
 ```js
 import here from 'await-here';
@@ -91,4 +91,32 @@ async function asyncOperation(cb) {
 }
 ```
 
+### Chain
+
+In adition to error handler there's an additional `chain` function. which as the name suggests lets you chain transformers or promises in order like this:
+
+```js
+async function seriesOfAsyncOperations() {
+  const [err, finalFormatToReturn] = await chain(
+    fetchUsers(),
+    users => {
+      return filter(users, user => user.weLove);
+    },
+    user => api.fetchUserTasks(user.id),
+    tasks => filter(tasks, task => task.unfinished)
+  );
+}
+
+what it does is saves from the headache of taking care of error at each step
+```
+
 **Supports Typescript 🤟**
+
+```ts
+here<T, E = any>
+chain<T, R = T, E = any>
+
+T: promise resolve type
+R: final expected result type after transformations defaults to T
+E: custom error type defaults to any
+```

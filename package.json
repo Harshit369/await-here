@@ -5,6 +5,7 @@
   "main": "dist/await-here.cjs.js",
   "module": "dist/await-here.esm.js",
   "unpkg": "dist/await-here.umd.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "BABEL_ENV=dev ./node_modules/.bin/rollup --config",
     "test": "BABEL_ENV=test && TS_NODE_PROJECT=tsconfig.testing.json mocha -r ts-node/register test/**/*.test.ts"
